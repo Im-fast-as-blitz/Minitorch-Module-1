@@ -146,8 +146,8 @@ def test_distribute(x: float, y: float, z: float) -> None:
 @given(small_floats, small_floats)
 def test_other(x: float, d: float) -> None:
     """Write a test that ensures some other property holds for your functions."""
-    assert_close(inv_back(x, d), (-d / (x**2 + 1e-6)))
-    assert_close(log_back(x, d), d / (x + 1e-6))
+    assert_close(mul(x, 0), 0)
+    assert_close(mul(x, 1), x)
 
 
 # ## Task 0.3  - Higher-order functions

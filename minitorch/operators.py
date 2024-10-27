@@ -48,11 +48,11 @@ def neg(x: float) -> float:
     return -x
 
 
-def lt(x: float, y: float) -> float:
+def lt(x: float, y: float) -> bool:
     return float(x < y)
 
 
-def eq(x: float, y: float) -> float:
+def eq(x: float, y: float) -> bool:
     return float(x == y)
 
 def max(x: float, y: float) -> float:
@@ -88,7 +88,9 @@ def log_back(x: float, d: float) -> float:
 
 
 def inv(x: float) -> float:
-    return 1 / (x + 1e-6)
+    if x == 0:
+        return 1 / (x + 1e-6)
+    return 1 / x
 
 
 def inv_back(x: float, d: float) -> float:

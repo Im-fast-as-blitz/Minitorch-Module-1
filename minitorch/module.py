@@ -52,11 +52,17 @@ class Module:
         result = []
         for key, val in self._parameters.items():
             result.append((key, val))
+        for m_name, module in self._modules.items():
+            for p_name, par in module.named_parameters():
+                result.append((m_name + "." + p_name, par))
         return result
 
     def parameters(self) -> Sequence[Parameter]:
         """Enumerate over all the parameters of this module and its descendents."""
-        return list(self._parameters.values())
+        result = list(self._parameters.values())
+        for _, module in self._modules.items():
+            result.extend(module.parameters())
+        return result
 
     def add_parameter(self, k: str, v: Any) -> Parameter:
         """Manually add a parameter. Useful helper for scalar parameters.
