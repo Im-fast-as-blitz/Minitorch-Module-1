@@ -6,6 +6,8 @@ import random
 
 import minitorch
 
+from minitorch.scalar_functions import Mul
+
 
 class Network(minitorch.Module):
     def __init__(self, hidden_layers):
@@ -41,7 +43,11 @@ class Linear(minitorch.Module):
             )
 
     def forward(self, inputs):
-        return inputs + self.bias
+        y = [b.value for b in self.bias]
+        for i, x in enumerate(inputs):
+            for j in range(len(y)):
+                y[j] = y[j] + x * self.weights[i][j].value
+        return y
 
 
 def default_log_fn(epoch, total_loss, correct, losses):
@@ -101,7 +107,7 @@ class ScalarTrain:
 
 if __name__ == "__main__":
     PTS = 50
-    HIDDEN = 2
+    HIDDEN = 10
     RATE = 0.5
     data = minitorch.datasets["Simple"](PTS)
     ScalarTrain(HIDDEN).train(data, RATE)
