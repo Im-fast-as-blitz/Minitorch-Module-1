@@ -192,6 +192,7 @@ def derivative_check(f: Any, *scalars: Scalar) -> None:
         *scalars  : n input scalar values.
     """
     out = f(*scalars)
+    print(f, out)
     out.backward()
 
     err_msg = """
