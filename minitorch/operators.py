@@ -48,12 +48,12 @@ def neg(x: float) -> float:
     return -x
 
 
-def lt(x: float, y: float) -> bool:
-    return x < y
+def lt(x: float, y: float) -> float:
+    return float(x < y)
 
 
-def eq(x: float, y: float) -> bool:
-    return x == y
+def eq(x: float, y: float) -> float:
+    return float(x == y)
 
 def max(x: float, y: float) -> float:
     return x if x > y else y
@@ -73,7 +73,7 @@ def sigmoid(x: float) -> float:
 
 
 def relu(x: float) -> float:
-    return max(x, 0)
+    return float(max(x, 0))
 
 def log(x: float) -> float:
     return math.log(x + 1e-6)
