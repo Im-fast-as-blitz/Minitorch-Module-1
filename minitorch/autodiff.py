@@ -28,7 +28,8 @@ def central_difference(f: Any, *vals: Any, arg: int = 0, epsilon: float = 1e-6) 
 
     x[arg] += epsilon
     y[arg] -= epsilon
-    return (f(*x) - f(*y)) * 1e+6 / (2)
+    # return (f(*x) - f(*y)) * 1e+6 / (2)
+    return (f(*x) - f(*y)) / (2 * epsilon)
 
 
 
